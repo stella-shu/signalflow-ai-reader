@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SignalFlow - The Signal Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,200..800;1,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#fc7c78",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "primary": "#4edea3",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "primary-container": "#10b981",
+                        "on-secondary": "#233143",
+                        "surface-container-low": "#1a1c20",
+                        "tertiary": "#ffb3af",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#2f3035",
+                        "outline": "#86948a",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "outline-variant": "#3c4a42",
+                        "surface-variant": "#333539",
+                        "surface-bright": "#37393e",
+                        "secondary-fixed": "#d4e4fa",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-tertiary": "#650911",
+                        "on-surface-variant": "#bbcabf",
+                        "secondary-container": "#39485a",
+                        "surface-dim": "#111318",
+                        "surface-container": "#1e2024",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-high": "#282a2e",
+                        "on-primary-container": "#00422b",
+                        "secondary": "#b9c8de",
+                        "surface": "#111318",
+                        "background": "#111318",
+                        "on-background": "#e2e2e8",
+                        "on-secondary-container": "#a7b6cc",
+                        "on-surface": "#e2e2e8",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-tint": "#4edea3",
+                        "inverse-primary": "#006c49",
+                        "on-primary": "#003824",
+                        "surface-container-highest": "#333539",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-fixed": "#002113"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+            font-family: theme('fontFamily.body');
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col antialiased">
+<!-- TopAppBar (Web) -->
+<header class="hidden md:flex justify-between items-center w-full px-6 py-4 bg-[#111318] dark:bg-[#111318] text-[#4edea3] dark:text-[#4edea3] docked full-width top-0 no-line tonal-shift via bg-[#1a1c20] flat no shadows z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-2xl font-headline italic text-[#e2e2e8] dark:text-[#e2e2e8]">SignalFlow</span>
+</div>
+<nav class="flex gap-8 items-center">
+<a class="text-[#4edea3] font-body text-sm font-semibold tracking-wide flex flex-col items-center gap-1 scale-95 active:duration-150" href="../the_signal_feed/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sensors</span>
+                The Signal
+                <div class="w-1 h-1 bg-primary rounded-full mt-1"></div>
+</a>
+<a class="text-[#bbcabf] font-body text-sm tracking-wide hover:text-[#4edea3] transition-colors duration-300 scale-95 active:duration-150 flex flex-col items-center gap-1" href="../silent_signal/code.html">
+<span class="material-symbols-outlined">filter_list</span>
+                Noise Filter
+            </a>
+<a class="text-[#bbcabf] font-body text-sm tracking-wide hover:text-[#4edea3] transition-colors duration-300 scale-95 active:duration-150 flex flex-col items-center gap-1" href="../smart_archive/code.html">
+<span class="material-symbols-outlined">archive</span>
+                Smart Archive
+            </a>
+<a class="text-[#bbcabf] font-body text-sm tracking-wide hover:text-[#4edea3] transition-colors duration-300 scale-95 active:duration-150 flex flex-col items-center gap-1" href="../ai_control_center/code.html">
+<span class="material-symbols-outlined">psychology</span>
+                AI Control
+            </a>
+<a class="text-[#bbcabf] font-body text-sm tracking-wide hover:text-[#4edea3] transition-colors duration-300 scale-95 active:duration-150 flex flex-col items-center gap-1" href="../onboarding_interests/code.html">
+<span class="material-symbols-outlined">explore</span>
+                Onboarding
+            </a>
+</nav>
+<div class="flex items-center gap-4">
+<img alt="user_profile_avatar" class="w-10 h-10 rounded-full object-cover shadow-sm border border-outline-variant/20" data-alt="Portrait of a young woman with natural makeup looking directly at the camera, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFqDUUn85LB9p8XxzeLWHTA37QcsBB6BGPaY0azPKZpGp9riw9GS_jDxzr2byoolF0DRiPO1qruhGQsLHJ8MFOBOTFd0kBiMT6-SUA1Osqu--Hj01AxD7hNzTQI58-2FI4dTlakVEgJXbZSz323PskPdujrtAObi5mE9cFkzYsU4R2vn3CQEXKjrhg3OT0ItHx-f3FlVtvsyrlsQBCZiRI8OEDAvvzDFAek5MqW5M-IV-O-yDtytQauVYliYFlfC-pp30MbpTy770"/>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- NavigationDrawer (Web Sidebar) -->
+<aside class="hidden md:flex flex-col h-full p-8 w-80 bg-[#1a1c20] dark:bg-[#1a1c20] text-[#4edea3] dark:text-[#4edea3] rounded-r-none tonal-layering via bg-[#0c0e12] shadow-2xl shadow-indigo-950/20 z-40">
+<div class="flex items-center gap-4 mb-12">
+<img alt="Curator Profile" class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young woman with natural makeup looking directly at the camera, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-3S5WFG9SwjY2hRjU53k8eyGEoudY7rLRye7eOFm98mIOgbWJkUKwJe0SCeZMxUDcMW1x8fXmWmYpM4VsTYgZYnEcxN5E5XKdMtErwoiFKF2A5OxtL7gcefM0L91jAodxFbiHeBMGBS2V7c8Di_SHnmkXEXcVwxekJeOsBSwQxmtT4shemM52X5DrFQeJzyw891X3w-lsKZYukNkcu6SjgSC_0zixl9J-U8RzS8DCGkmC5vEStQ9E3zTzFAKyHDebAHwquy07fUg"/>
+<div>
+<h2 class="font-headline text-lg text-on-surface">The Curator</h2>
+<p class="font-label text-xs text-on-surface-variant opacity-80">Privacy Level: Maximum</p>
+<p class="font-label text-xs text-on-surface-variant opacity-80">Vibe: High Energy</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-1">
+<a class="flex items-center gap-4 px-4 py-3 text-[#4edea3] font-bold bg-[#4edea3]/5 rounded-lg transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" href="../the_signal_feed/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<span class="font-label">The Signal</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg" href="../silent_signal/code.html">
+<span class="material-symbols-outlined">filter_list</span>
+<span class="font-label">Noise Filter</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg" href="../smart_archive/code.html">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-label">Smart Archive</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg" href="../ai_control_center/code.html">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label">AI Control</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg" href="../onboarding_interests/code.html">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label">Onboarding</span>
+</a>
+</nav>
+<div class="mt-auto pt-8">
+<span class="text-[#4edea3] font-headline italic text-sm">SignalFlow v2.4</span>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-6 py-8 md:px-12 md:py-16 pb-32">
+<div class="max-w-4xl mx-auto">
+<!-- Controls Section -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+<div>
+<h1 class="font-headline text-4xl md:text-5xl text-on-surface mb-2 tracking-tight">The Signal Feed</h1>
+<p class="font-body text-on-surface-variant text-sm md:text-base">Curated intelligence, filtered for clarity.</p>
+</div>
+<div class="flex flex-wrap items-center gap-6">
+<!-- Noise Filter Toggle -->
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/15">
+<span class="font-label text-sm text-on-surface-variant">Noise Filter</span>
+<button id="noise-toggle" class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="inline-block h-4 w-4 transform rounded-full bg-on-primary transition-transform translate-x-6"></span>
+</button>
+</div>
+<!-- Vibe Selector -->
+<div class="flex items-center bg-surface-container-high rounded-full p-1 shadow-sm">
+<button class="vibe-btn px-4 py-1.5 rounded-full font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors">Low</button>
+<button class="vibe-btn px-4 py-1.5 rounded-full font-label text-sm bg-primary-container text-on-primary-container shadow-sm transition-colors">Medium</button>
+<button class="vibe-btn px-4 py-1.5 rounded-full font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors">High</button>
+</div>
+</div>
+</section>
+<!-- Feed Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Card 1 -->
+<article class="relative bg-surface-container-lowest p-8 rounded-xl group transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-low">
+<div class="absolute left-0 top-8 bottom-8 w-[2px] bg-primary rounded-r-full"></div>
+<div class="pl-4">
+<div class="flex justify-between items-start mb-6">
+<span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded-full font-label text-xs tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                    High Signal
+                                </span>
+<span class="font-label text-xs text-on-surface-variant">2h ago</span>
+</div>
+<h2 class="font-headline text-2xl text-on-surface mb-4 leading-snug group-hover:text-primary transition-colors">Global Markets: The Shift Toward Decentralized Energy Protocols</h2>
+<ul class="space-y-3 mb-8">
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Major European utilities announce integration with blockchain-based grid balancing systems.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Projected 15% reduction in transmission loss by Q4 2024.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Regulatory frameworks expected to adapt swiftly to support microgrid expansions.
+                                </li>
+</ul>
+<button class="btn-read-more font-label text-sm text-primary flex items-center gap-2 group-hover:gap-3 transition-all">
+                                Read Full Analysis
+                                <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="relative bg-surface-container-lowest p-8 rounded-xl group transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-low mt-0 md:mt-12">
+<div class="absolute left-0 top-8 bottom-8 w-[2px] bg-primary rounded-r-full"></div>
+<div class="pl-4">
+<div class="flex justify-between items-start mb-6">
+<span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded-full font-label text-xs tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                    High Signal
+                                </span>
+<span class="font-label text-xs text-on-surface-variant">5h ago</span>
+</div>
+<h2 class="font-headline text-2xl text-on-surface mb-4 leading-snug group-hover:text-primary transition-colors">AI Governance: Emergence of the 'Data Provenance' Standard</h2>
+<ul class="space-y-3 mb-8">
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    New consortium establishes open standard for tracking training data origins.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Aims to resolve ongoing copyright disputes in generative models.
+                                </li>
+</ul>
+<button class="btn-read-more font-label text-sm text-primary flex items-center gap-2 group-hover:gap-3 transition-all mt-auto pt-4">
+                                Read Full Analysis
+                                <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="relative bg-surface-container-lowest p-8 rounded-xl group transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-low">
+<div class="pl-4">
+<div class="flex justify-between items-start mb-6">
+<span class="font-label text-xs text-on-surface-variant">Yesterday</span>
+</div>
+<h2 class="font-headline text-2xl text-on-surface mb-4 leading-snug group-hover:text-primary transition-colors">Neurotech Interfaces: Non-Invasive Consumer Wearables Gain Traction</h2>
+<ul class="space-y-3 mb-8">
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] mt-0.5">horizontal_rule</span>
+                                    Startup Alpha signals a breakthrough in EEG fidelity for consumer devices.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] mt-0.5">horizontal_rule</span>
+                                    Primary applications focus on deep focus enhancement and sleep architecture optimization.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px] mt-0.5">horizontal_rule</span>
+                                    Ethical concerns regarding cognitive data privacy remain largely unaddressed.
+                                </li>
+</ul>
+<button class="font-label text-sm text-primary flex items-center gap-2 group-hover:gap-3 transition-all mt-auto pt-4">
+                                Read Full Analysis
+                                <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="relative bg-surface-container-lowest p-8 rounded-xl group transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-low mt-0 md:mt-12">
+<div class="absolute left-0 top-8 bottom-8 w-[2px] bg-primary rounded-r-full"></div>
+<div class="pl-4">
+<div class="flex justify-between items-start mb-6">
+<span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-2.5 py-1 rounded-full font-label text-xs tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                                    High Signal
+                                </span>
+<span class="font-label text-xs text-on-surface-variant">Yesterday</span>
+</div>
+<h2 class="font-headline text-2xl text-on-surface mb-4 leading-snug group-hover:text-primary transition-colors">Quantum Computing: Fault-Tolerant Qubits Milestone Reached</h2>
+<ul class="space-y-3 mb-8">
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Researchers demonstrate logical qubits with error rates below the theoretical threshold.
+                                </li>
+<li class="flex items-start gap-3 text-sm font-body text-on-surface-variant leading-relaxed">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">check</span>
+                                    Significant implications for cryptography and complex molecular simulations.
+                                </li>
+</ul>
+<button class="font-label text-sm text-primary flex items-center gap-2 group-hover:gap-3 transition-all mt-auto pt-4">
+                                Read Full Analysis
+                                <span class="material-symbols-outlined text-[18px]">arrow_right_alt</span>
+</button>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-6 pt-4 bg-[#1a1c20]/70 dark:bg-[#1a1c20]/70 backdrop-blur-xl text-[#4edea3] dark:text-[#4edea3] font-sans Manrope text-[10px] uppercase tracking-widest rounded-t-none no-line tonal-shift shadow-[0_-4px_24px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center relative after:content-[''] after:absolute after:-bottom-2 after:w-1 after:h-1 after:bg-[#4edea3] after:rounded-full hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500" href="../the_signal_feed/code.html">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">rss_feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500" href="../silent_signal/code.html">
+<span class="material-symbols-outlined text-2xl">tune</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500" href="../smart_archive/code.html">
+<span class="material-symbols-outlined text-2xl">inventory_2</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500" href="../ai_control_center/code.html">
+<span class="material-symbols-outlined text-2xl">settings_input_component</span>
+</a>
+</nav>
+
+<!-- Custom Modal for Prototype Warning -->
+<div id="custom-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div class="modal-backdrop absolute inset-0 bg-surface-dim/80 backdrop-blur-sm opacity-0 transition-opacity duration-300 ease-out"></div>
+    <div class="modal-content relative bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-8 max-w-md w-full shadow-2xl opacity-0 translate-y-4 scale-95 transition-all duration-300 ease-[cubic-bezier(0.2,0,0,1)]">
+        <div class="flex items-center gap-3 mb-4 text-primary">
+            <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">construction</span>
+            <h3 class="text-2xl font-headline text-on-surface">Prototype Phase</h3>
+        </div>
+        <p class="text-on-surface-variant font-body text-base leading-relaxed mb-8">
+            This feature is currently in active development. The full deep-dive analysis will be rendered directly in this view in the final build.
+        </p>
+        <div class="flex justify-end">
+            <button id="close-modal-btn" class="px-6 py-2.5 bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-colors font-label font-bold rounded-lg text-sm">
+                Acknowledge
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Noise Filter Toggle
+        const noiseToggle = document.getElementById('noise-toggle');
+        let isNoiseFilterOn = true;
+        if(noiseToggle) {
+            noiseToggle.addEventListener('click', () => {
+                isNoiseFilterOn = !isNoiseFilterOn;
+                const span = noiseToggle.querySelector('span');
+                if(isNoiseFilterOn) {
+                    noiseToggle.classList.add('bg-primary');
+                    noiseToggle.classList.remove('bg-surface-container-highest');
+                    span.classList.add('translate-x-6');
+                    span.classList.remove('translate-x-1');
+                } else {
+                    noiseToggle.classList.remove('bg-primary');
+                    noiseToggle.classList.add('bg-surface-container-highest');
+                    span.classList.remove('translate-x-6');
+                    span.classList.add('translate-x-1');
+                }
+            });
+        }
+
+        // Vibe Selectors
+        const vibeBtns = document.querySelectorAll('.vibe-btn');
+        vibeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // reset all
+                vibeBtns.forEach(b => {
+                    b.className = "vibe-btn px-4 py-1.5 rounded-full font-label text-sm text-on-surface-variant hover:text-on-surface transition-colors";
+                });
+                // set active
+                btn.className = "vibe-btn px-4 py-1.5 rounded-full font-label text-sm bg-primary-container text-on-primary-container shadow-sm transition-colors";
+            });
+        });
+
+        // Read More Buttons & Modal
+        const readBtns = document.querySelectorAll('.btn-read-more');
+        const customModal = document.getElementById('custom-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        readBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">sync</span> Loading...`;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    // Show custom modal instead of alert
+                    customModal.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before animating opacity
+                    setTimeout(() => {
+                        customModal.querySelector('.modal-backdrop').classList.remove('opacity-0');
+                        customModal.querySelector('.modal-content').classList.remove('opacity-0', 'translate-y-4', 'scale-95');
+                    }, 10);
+                }, 800);
+            });
+        });
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                customModal.querySelector('.modal-backdrop').classList.add('opacity-0');
+                customModal.querySelector('.modal-content').classList.add('opacity-0', 'translate-y-4', 'scale-95');
+                setTimeout(() => {
+                    customModal.classList.add('hidden');
+                }, 300); // Wait for transition to finish
+            });
+        }
+    });
+</script>
+</body></html>

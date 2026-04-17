@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smart Archive | SignalFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#fc7c78",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "primary": "#4edea3",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "primary-container": "#10b981",
+                        "on-secondary": "#233143",
+                        "surface-container-low": "#1a1c20",
+                        "tertiary": "#ffb3af",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#2f3035",
+                        "outline": "#86948a",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "outline-variant": "#3c4a42",
+                        "surface-variant": "#333539",
+                        "surface-bright": "#37393e",
+                        "secondary-fixed": "#d4e4fa",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-tertiary": "#650911",
+                        "on-surface-variant": "#bbcabf",
+                        "secondary-container": "#39485a",
+                        "surface-dim": "#111318",
+                        "surface-container": "#1e2024",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-high": "#282a2e",
+                        "on-primary-container": "#00422b",
+                        "secondary": "#b9c8de",
+                        "surface": "#111318",
+                        "background": "#111318",
+                        "on-background": "#e2e2e8",
+                        "on-secondary-container": "#a7b6cc",
+                        "on-surface": "#e2e2e8",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-tint": "#4edea3",
+                        "inverse-primary": "#006c49",
+                        "on-primary": "#003824",
+                        "surface-container-highest": "#333539",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-fixed": "#002113"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {},
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333539; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3c4a42; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-[#111318] dark:bg-[#111318] no-line shadow-none">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="scale-95 active:duration-150 text-[#bbcabf] hover:text-[#4edea3] transition-colors duration-300 md:hidden flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#4edea3] dark:text-[#4edea3]" style="font-variation-settings: 'FILL' 0;">security</span>
+<span class="text-2xl font-serif italic text-[#e2e2e8] dark:text-[#e2e2e8] font-headline tracking-tight">SignalFlow</span>
+</div>
+</div>
+<div class="flex items-center">
+<button aria-label="User Profile" class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high scale-95 active:duration-150 border border-outline-variant/15">
+<img alt="Curator Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a man with subtle dramatic lighting on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAlV1NKvSmCV4F9sFDxHwrYdb7SYy9qWH3gCiT5ldVBtSMvFmLa-RTXVW9w1lwXg30Ohqv3SwBjnrageYdI0AnmFlzA5-BHJsnSKZiP-4i_h5vk6ipCqza4eHO2yNgaOq0h4mTTg8NSr4FwJejped2Lv6-q7MZqQ6OywuHd4XJP2GNxhvRnsSbEnKv-VbVjsBIpUlY5RKaj7RSnfz8v5tLVcekClFRaJ5OAPzzRzCvVbkgMBqGL52J8ofJWOnBnEUqRfZMWgpUPF4"/>
+</button>
+</div>
+</header>
+<div class="flex flex-1 pt-[72px]">
+<!-- NavigationDrawer (Desktop) -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-72px)] p-8 w-80 rounded-r-none bg-[#1a1c20] dark:bg-[#1a1c20] shadow-2xl shadow-indigo-950/20 fixed left-0 top-[72px] overflow-y-auto z-40">
+<div class="mb-12 flex flex-col items-start">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-4 border border-outline-variant/15">
+<img alt="Curator Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a man with subtle dramatic lighting on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvN96MnpN3IBmlFNMmaBF6evP67CEFtBrMupOn0rCaDyAtCPi8fGMWDpOnEE1n4nQqmoyx66UDVsR41nGp5sfl9EpB3kj3LMZoRGJTfIscjiuEfOGfCsxw7X36q33EbpYQ1MhSm2EnoxFuazMB6JyNyMTXgKvBag0dGkNnpxeMWXgnPS3AmUXlgNz64HqdZuguR0xfOSK2Qn-kkGm_yjk9XDGJ79uCW5_vkkTdXHdpqZ9zjmrgIdLfVto6QYYwouaOnQc9t8_YF0w"/>
+</div>
+<h2 class="font-serif font-headline text-xl text-on-surface mb-1">The Curator</h2>
+<p class="font-body text-xs text-on-surface-variant mb-1">Privacy Level: Maximum</p>
+<p class="font-body text-xs text-[#4edea3]">Vibe: High Energy</p>
+</div>
+<nav class="flex flex-col gap-2 font-label">
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg group" href="../the_signal_feed/code.html">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" style="font-variation-settings: 'FILL' 0;">sensors</span>
+<span>The Signal</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg group" href="../silent_signal/code.html">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" style="font-variation-settings: 'FILL' 0;">filter_list</span>
+<span>Noise Filter</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#4edea3] font-bold bg-[#4edea3]/5 rounded-lg transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" href="../smart_archive/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">archive</span>
+<span>Smart Archive</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg group" href="../ai_control_center/code.html">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" style="font-variation-settings: 'FILL' 0;">psychology</span>
+<span>AI Control</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-[#bbcabf] hover:bg-[#4edea3]/10 hover:text-[#4edea3] transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] rounded-lg group" href="../onboarding_interests/code.html">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)]" style="font-variation-settings: 'FILL' 0;">explore</span>
+<span>Onboarding</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-80 p-6 md:p-12 lg:px-20 lg:py-16 pb-32 md:pb-16 w-full max-w-[1600px] mx-auto">
+<!-- Editorial Header -->
+<div class="mb-16 flex flex-col md:flex-row md:justify-between md:items-end gap-6 border-outline-variant/15">
+<div class="max-w-2xl">
+<h1 class="font-headline text-5xl md:text-6xl text-on-surface mb-6 tracking-tight leading-tight">Smart Archive</h1>
+<p class="font-body text-lg text-on-surface-variant max-w-xl leading-relaxed">Your curated sanctuary of high-signal information. Synthesize past insights and uncover hidden connections without the noise.</p>
+</div>
+<div class="text-right hidden md:block">
+<p class="font-headline text-on-surface-variant italic text-xl">142 Saved Entities</p>
+</div>
+</div>
+<!-- Controls: Search & Filter -->
+<div class="flex flex-col lg:flex-row gap-6 mb-16 relative z-10">
+<!-- Search Input -->
+<div class="relative flex-1 max-w-2xl group">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface placeholder-on-surface-variant/50 rounded-xl pl-14 pr-6 py-4 border border-outline-variant/15 focus:outline-none focus:border-primary/40 focus:bg-surface-container-low transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] font-body text-base shadow-[0_4px_24px_rgba(0,0,0,0.2)]" placeholder="Query your archive..." type="text"/>
+</div>
+<!-- Theme Filters -->
+<div class="flex gap-3 overflow-x-auto pb-2 lg:pb-0 hide-scrollbar items-center w-full lg:w-auto">
+<button class="filter-btn active px-6 py-2.5 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-label text-sm font-medium whitespace-nowrap shadow-[0_4px_16px_rgba(78,222,163,0.15)] transition-transform hover:scale-105 duration-500 ease-[cubic-bezier(0.2,0,0,1)]">All Entities</button>
+<button class="filter-btn px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-label text-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]">#Strategy</button>
+<button class="filter-btn px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-label text-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]">#Tech</button>
+<button class="filter-btn px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-label text-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]">#Future</button>
+<button class="filter-btn px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-label text-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]">#Philosophy</button>
+</div>
+</div>
+<!-- Archive Grid (Bento/Masonry Inspiration) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+<!-- Card 1: High Signal Feature -->
+<article class="relative bg-surface-container-lowest p-8 flex flex-col justify-between group rounded-2xl min-h-[320px] md:col-span-2 lg:col-span-2 overflow-hidden hover:bg-surface-container-low transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] border border-outline-variant/15">
+<!-- High Signal Indicator -->
+<div class="absolute left-0 top-8 bottom-8 w-[3px] bg-primary rounded-r-full shadow-[0_0_12px_rgba(78,222,163,0.4)]"></div>
+<div class="flex flex-col gap-6 z-10">
+<div class="flex justify-between items-start w-full">
+<div class="flex flex-wrap gap-2">
+<span class="text-primary font-label text-xs tracking-widest uppercase bg-primary/10 px-3 py-1 rounded-full">#Strategy</span>
+<span class="text-primary font-label text-xs tracking-widest uppercase bg-primary/10 px-3 py-1 rounded-full">#Design</span>
+</div>
+<span class="text-on-surface-variant text-xs font-label opacity-60">Oct 12</span>
+</div>
+<div>
+<h3 class="font-headline text-3xl md:text-4xl text-on-surface mt-2 mb-4 group-hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] leading-tight">The Protocol of Intentional Absence</h3>
+<p class="font-body text-on-surface-variant text-base leading-relaxed max-w-2xl">An analysis of negative space in modern interface design. Focusing on tonal layering and editorial tension to create a sanctuary of information rather than a dashboard of noise. True luxury is the absence of distraction.</p>
+</div>
+</div>
+<div class="flex justify-between items-center mt-8 pt-6 border-t border-outline-variant/10 z-10">
+<span class="text-xs font-label text-on-surface-variant/50">8 min read synthesis</span>
+<button aria-label="More options" class="text-primary hover:text-primary-container transition-colors p-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">more_horiz</span>
+</button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="relative bg-surface-container-lowest p-8 flex flex-col justify-between group rounded-2xl min-h-[320px] hover:bg-surface-container-low transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] border border-outline-variant/15">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-wrap gap-2">
+<span class="text-on-surface-variant font-label text-xs tracking-widest uppercase">#Tech</span>
+</div>
+<span class="text-on-surface-variant text-xs font-label opacity-60">Oct 10</span>
+</div>
+<h3 class="font-headline text-2xl text-on-surface mt-2 group-hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] leading-tight">Neural Substrates of Focus</h3>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed line-clamp-4">Examining the cognitive load imposed by standard material design shadows versus the calming effect of subtle tonal shifts in UI architecture.</p>
+</div>
+<div class="flex justify-between items-center mt-8">
+<span class="text-xs font-label text-on-surface-variant/50">4 min read</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="relative bg-surface-container-lowest p-8 flex flex-col justify-between group rounded-2xl min-h-[320px] hover:bg-surface-container-low transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] border border-outline-variant/15">
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-wrap gap-2">
+<span class="text-on-surface-variant font-label text-xs tracking-widest uppercase">#Future</span>
+<span class="text-on-surface-variant font-label text-xs tracking-widest uppercase">#Ethics</span>
+</div>
+<span class="text-on-surface-variant text-xs font-label opacity-60">Oct 08</span>
+</div>
+<h3 class="font-headline text-2xl text-on-surface mt-2 group-hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] leading-tight">Algorithmic Silence</h3>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed line-clamp-4">Why the next trillion-dollar company won't build an attention economy, but an intention economy. The value of curation over aggregation.</p>
+</div>
+<div class="flex justify-between items-center mt-8">
+<span class="text-xs font-label text-on-surface-variant/50">12 min read</span>
+</div>
+</article>
+<!-- Card 4: Embedded Image Element -->
+<article class="relative bg-surface-container-lowest p-8 flex flex-col justify-between group rounded-2xl min-h-[320px] md:col-span-2 lg:col-span-1 overflow-hidden border border-outline-variant/15">
+<div class="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700 ease-[cubic-bezier(0.2,0,0,1)]">
+<img alt="Abstract Topography" class="w-full h-full object-cover grayscale mix-blend-overlay" data-alt="Abstract fluid topography map in deep indigo and emerald greens with subtle lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgUdnNIUMws7emzG1YEtwORiIUfWourP8H-slekx2_2P9qUxKdmN9PhHyRo2D0E5X2DAQ1m-f2tKjXLHVXx0iZVJrjprr5O2Av4M3dAwVT5CoNBsr3ONSP-jSU5O1hk3Pqxd4CQVuYb2mqSpfswDxf_w5t-Mh8q-Q2b7Bp0he5Ui0PQ0Fwz4EG_bwJQ6BKYjhXDVdHZtshOJb2AN6tQMUOwrn2RZb6uzwDSB3TWcgaI7h8jia6NUsK6KbotVhJ3FZajFvcq_1HJoI"/>
+</div>
+<div class="flex flex-col gap-4 z-10">
+<div class="flex justify-between items-start">
+<div class="flex flex-wrap gap-2">
+<span class="text-primary font-label text-xs tracking-widest uppercase">#Architecture</span>
+</div>
+<span class="text-on-surface-variant text-xs font-label opacity-60">Sep 29</span>
+</div>
+<h3 class="font-headline text-2xl text-on-surface mt-2 group-hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] leading-tight">Data Topography</h3>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed line-clamp-3">Visualizing complex datasets through organic, fluid layouts rather than rigid tables. A study in natural data flow.</p>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="relative bg-surface-container-lowest p-8 flex flex-col justify-between group rounded-2xl min-h-[320px] hover:bg-surface-container-low transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] border border-outline-variant/15">
+<!-- High Signal Indicator -->
+<div class="absolute left-0 top-8 bottom-8 w-[2px] bg-primary rounded-r-full opacity-50"></div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-wrap gap-2">
+<span class="text-primary font-label text-xs tracking-widest uppercase">#Philosophy</span>
+</div>
+<span class="text-on-surface-variant text-xs font-label opacity-60">Sep 21</span>
+</div>
+<h3 class="font-headline text-2xl text-on-surface mt-2 group-hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] leading-tight">The Stoic Interface</h3>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed line-clamp-4">Applying Marcus Aurelius to digital environments. Building tools that do not react impulsively to user behavior, but stand resolute and calm.</p>
+</div>
+</article>
+</div>
+<!-- Load More (Editorial Text button) -->
+<div class="mt-16 flex justify-center">
+<button id="reveal-btn" class="font-label text-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)] flex items-center gap-2">
+                    Reveal deeper layers <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">south</span>
+</button>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-8 pb-6 pt-4 bg-[#1a1c20]/70 dark:bg-[#1a1c20]/70 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)] rounded-t-none no-line">
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500 group" href="../the_signal_feed/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">rss_feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500 group" href="../silent_signal/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">tune</span>
+</a>
+<a class="flex flex-col items-center justify-center relative after:content-[''] after:absolute after:-bottom-2 after:w-1 after:h-1 after:bg-[#4edea3] after:rounded-full text-[#4edea3] dark:text-[#4edea3] hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500" href="../smart_archive/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#bbcabf]/50 hover:text-[#4edea3] transition-all cubic-bezier(0.2,0,0,1) duration-500 group" href="../ai_control_center/code.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings_input_component</span>
+</a>
+</nav>
+
+<!-- Toast Notification -->
+<div id="archive-toast" class="fixed bottom-24 right-8 transform translate-y-20 opacity-0 transition-all duration-300 ease-out bg-surface-container-highest text-on-surface px-6 py-4 rounded-lg shadow-lg font-label font-medium flex items-center gap-3 z-50">
+    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+    <span id="archive-toast-msg">End of archive reached.</span>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active classes from all
+                filterBtns.forEach(b => {
+                    b.className = "filter-btn px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface font-label text-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors duration-500 ease-[cubic-bezier(0.2,0,0,1)]";
+                });
+                // Add active classes to clicked
+                btn.className = "filter-btn active px-6 py-2.5 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-label text-sm font-medium whitespace-nowrap shadow-[0_4px_16px_rgba(78,222,163,0.15)] transition-transform hover:scale-105 duration-500 ease-[cubic-bezier(0.2,0,0,1)]";
+            });
+        });
+
+        const showToast = (msg) => {
+            const toast = document.getElementById('archive-toast');
+            document.getElementById('archive-toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        };
+
+        const revealBtn = document.getElementById('reveal-btn');
+        if (revealBtn) {
+            revealBtn.addEventListener('click', () => {
+                const originalContent = revealBtn.innerHTML;
+                revealBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[16px]">sync</span> Loading...`;
+                setTimeout(() => {
+                    revealBtn.innerHTML = originalContent;
+                    showToast("End of archive reached.");
+                }, 800);
+            });
+        }
+
+        const moreOptsBtns = document.querySelectorAll('button[aria-label="More options"]');
+        moreOptsBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                showToast("Options menu coming soon.");
+            });
+        });
+    });
+</script>
+</body></html>

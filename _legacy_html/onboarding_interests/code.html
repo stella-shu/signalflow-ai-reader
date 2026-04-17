@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SignalFlow - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#fc7c78",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#0d1c2d",
+                        "primary": "#4edea3",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "primary-container": "#10b981",
+                        "on-secondary": "#233143",
+                        "surface-container-low": "#1a1c20",
+                        "tertiary": "#ffb3af",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#2f3035",
+                        "outline": "#86948a",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed-dim": "#b9c8de",
+                        "outline-variant": "#3c4a42",
+                        "surface-variant": "#333539",
+                        "surface-bright": "#37393e",
+                        "secondary-fixed": "#d4e4fa",
+                        "on-error": "#690005",
+                        "inverse-surface": "#e2e2e8",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-tertiary": "#650911",
+                        "on-surface-variant": "#bbcabf",
+                        "secondary-container": "#39485a",
+                        "surface-dim": "#111318",
+                        "surface-container": "#1e2024",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-high": "#282a2e",
+                        "on-primary-container": "#00422b",
+                        "secondary": "#b9c8de",
+                        "surface": "#111318",
+                        "background": "#111318",
+                        "on-background": "#e2e2e8",
+                        "on-secondary-container": "#a7b6cc",
+                        "on-surface": "#e2e2e8",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-tint": "#4edea3",
+                        "inverse-primary": "#006c49",
+                        "on-primary": "#003824",
+                        "surface-container-highest": "#333539",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-secondary-fixed-variant": "#39485a",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-fixed": "#002113"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex flex-col">
+<!-- Top Navigation (Onboarding - Minimal) -->
+<header class="flex justify-between items-center w-full px-6 py-4 fixed top-0 w-full docked full-width top-0 no-line tonal-shift via bg-[#1a1c20] flat no shadows z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="security">security</span>
+<h1 class="text-2xl font-headline italic text-inverse-surface">SignalFlow</h1>
+</div>
+<!-- Progress Indicator -->
+<div class="flex gap-2 items-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-high"></div>
+<div class="w-2 h-2 rounded-full bg-surface-container-high"></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center pt-24 pb-32 px-6 md:px-12 max-w-4xl mx-auto w-full">
+<!-- Welcome Section -->
+<div class="text-left w-full mb-16 md:mb-24">
+<h2 class="font-headline text-5xl md:text-7xl font-medium tracking-tight mb-4 text-on-surface">Welcome to your signal.</h2>
+<p class="font-body text-on-surface-variant text-lg md:text-xl max-w-2xl leading-relaxed">
+                Curate your focus. Select the topics that matter. Silence the noise.
+            </p>
+</div>
+<!-- Interest Picker Section -->
+<div class="w-full mb-16">
+<h3 class="font-headline text-2xl text-on-surface mb-8">Curate Your Feed</h3>
+<div id="interest-container" class="flex flex-wrap gap-4">
+<!-- Selected Chip -->
+<button class="bg-primary-container text-on-primary-container font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:opacity-90 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+                    AI
+                    <span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</button>
+<!-- Unselected Chips -->
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Privacy
+                </button>
+<button class="bg-primary-container text-on-primary-container font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:opacity-90 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.1)]">
+                    Web3
+                    <span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</button>
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Space
+                </button>
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Philosophy
+                </button>
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Architecture
+                </button>
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Neuroscience
+                </button>
+<button class="bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest">
+                    Deep Tech
+                </button>
+</div>
+</div>
+<!-- Connect URL Section -->
+<div class="w-full bg-surface-container-lowest p-8 md:p-12 rounded-xl mb-12 relative overflow-hidden">
+<!-- Decorative subtle gradient -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="flex-1">
+<h3 class="font-headline text-2xl text-on-surface mb-2">Connect your world</h3>
+<p class="font-body text-on-surface-variant text-sm">Add custom RSS feeds or YouTube channel URLs directly to your vault.</p>
+</div>
+<div class="w-full md:w-[400px]">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant z-10" data-icon="link">link</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/50 border border-transparent group-focus-within:border-primary/40 rounded-lg py-4 pl-12 pr-4 font-body text-sm outline-none transition-all duration-300" placeholder="https://..." type="text"/>
+<button id="add-url-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-surface-container-highest hover:bg-surface-variant text-on-surface px-4 py-2 rounded font-label text-xs transition-colors">Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="w-full flex justify-end mt-12 border-t-0 border-outline-variant/15 pt-8">
+<button id="continue-btn" class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-label text-base font-semibold px-10 py-4 rounded-lg flex items-center gap-3 transition-transform duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(78,222,163,0.2)]">
+                Continue
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Interests toggle
+        const interestContainer = document.getElementById('interest-container');
+        if (interestContainer) {
+            const buttons = interestContainer.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const isSelected = btn.classList.contains('bg-primary-container');
+                    if (isSelected) {
+                        btn.className = "bg-surface-container-high text-on-surface font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:bg-surface-container-highest";
+                        const icon = btn.querySelector('span');
+                        if (icon) icon.remove();
+                    } else {
+                        btn.className = "bg-primary-container text-on-primary-container font-label text-sm px-6 py-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] hover:opacity-90 flex items-center gap-2 shadow-[0_4px_24px_rgba(0,0,0,0.1)]";
+                        const icon = document.createElement('span');
+                        icon.className = "material-symbols-outlined text-[16px]";
+                        icon.setAttribute('data-icon', 'check');
+                        icon.innerText = "check";
+                        btn.appendChild(icon);
+                    }
+                });
+            });
+        }
+
+        // Add URL button
+        const addBtn = document.getElementById('add-url-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                const input = addBtn.previousElementSibling;
+                if (input && input.value) {
+                    addBtn.innerText = "Added!";
+                    addBtn.classList.add('bg-primary', 'text-on-primary');
+                    setTimeout(() => {
+                        input.value = '';
+                        addBtn.innerText = "Add";
+                        addBtn.classList.remove('bg-primary', 'text-on-primary');
+                    }, 2000);
+                }
+            });
+        }
+
+        // Continue Button
+        const continueBtn = document.getElementById('continue-btn');
+        if (continueBtn) {
+            continueBtn.addEventListener('click', () => {
+                window.location.href = '../the_signal_feed/code.html';
+            });
+        }
+    });
+</script>
+</body></html>
