@@ -30,6 +30,33 @@ export function AppProvider({ children }) {
       return `${diffInDays}d ago`;
     };
 
+    const analyzeContent = (text) => {
+      if (!text) return { vibe: 'Medium', signal: false, summaryPoints: ["No summary available."] };
+      const content = text.toLowerCase();
+      const highSignalKeywords = ['launch', 'announce', 'release', 'breakthrough', 'funding', 'acquire', 'new', 'update', 'invest', 'ai'];
+      const lowSignalKeywords = ['rumor', 'opinion', 'review', 'guide', 'best', 'deals', 'gossip'];
+      
+      let signalScore = 0;
+      highSignalKeywords.forEach(kw => { if (content.includes(kw)) signalScore++; });
+      lowSignalKeywords.forEach(kw => { if (content.includes(kw)) signalScore--; });
+
+      let vibe = 'Medium';
+      let signal = false;
+      
+      if (signalScore >= 1) {
+        vibe = 'High';
+        signal = true;
+      } else if (signalScore < 0) {
+        vibe = 'Low';
+      }
+
+      // Extract actual points
+      const sentences = text.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 15).slice(0, 3);
+      const summaryPoints = sentences.length > 0 ? sentences.map(s => s.trim()) : [text.substring(0, 100) + '...'];
+
+      return { vibe, signal, summaryPoints };
+    };
+
     const fetchNews = async () => {
       try {
         setLoadingFeeds(true);
@@ -39,21 +66,23 @@ export function AppProvider({ children }) {
         const data = await res.json();
         
         if (data.items) {
-          const formattedData = data.items.map((item, index) => ({
-            id: item.guid || index,
-            title: item.title,
-            timestamp: getRelativeTime(item.pubDate),
-            vibe: ["Low", "Medium", "High"][Math.floor(Math.random() * 3)],
-            signal: Math.random() > 0.5,
-            tags: item.categories?.slice(0, 3) || ["Tech", "News"],
-            sourceUrl: item.link,
-            summaryPoints: [
-              item.description.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...',
-              "Extracted via SignalFlow Real-Time Engine.",
-              "Vibe and Signal metrics are algorithmically estimated."
-            ],
-            fullAnalysis: item.description.replace(/<[^>]*>?/gm, '') || item.content.replace(/<[^>]*>?/gm, '')
-          }));
+          const formattedData = data.items.map((item, index) => {
+            const rawContent = item.description || item.content || '';
+            const cleanContent = rawContent.replace(/<[^>]*>?/gm, '');
+            const analysis = analyzeContent(cleanContent);
+            
+            return {
+              id: item.guid || index,
+              title: item.title,
+              timestamp: getRelativeTime(item.pubDate),
+              vibe: analysis.vibe,
+              signal: analysis.signal,
+              tags: item.categories?.slice(0, 3) || ["Tech"],
+              sourceUrl: item.link,
+              summaryPoints: analysis.summaryPoints,
+              fullAnalysis: cleanContent
+            };
+          });
           setFeedData(formattedData);
         }
       } catch (error) {

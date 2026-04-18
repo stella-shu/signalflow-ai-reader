@@ -4,37 +4,9 @@ import { ReadingDrawer } from '../components/ReadingDrawer';
 
 export default function TheSignalFeed() {
   const { feedData, setFeedData, loadingFeeds } = useAppContext();
-  const [activeVibe, setActiveVibe] = useState('Medium'); // 'Low', 'Medium', 'High'
-  const [noiseFilterOn, setNoiseFilterOn] = useState(true);
+  const [activeVibe, setActiveVibe] = useState('All'); // 'All', 'Low', 'Medium', 'High'
+  const [noiseFilterOn, setNoiseFilterOn] = useState(false);
   const [activeArticle, setActiveArticle] = useState(null);
-
-  // Real-time Simulation
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const newArticle = {
-        id: Date.now(),
-        title: `Anthropic Announces Claude 3 Family`,
-        timestamp: "Just now",
-        vibe: "High",
-        signal: true,
-        tags: ["Tech", "LLM"],
-        sourceUrl: "https://www.anthropic.com/news/claude-3-family",
-        summaryPoints: [
-          "Anthropic releases Claude 3 Opus, Sonnet, and Haiku.",
-          "Opus model outperforms GPT-4 on several key benchmarks.",
-          "Features advanced vision capabilities and massive 200K context window."
-        ],
-        fullAnalysis: "The AI race intensifies as Anthropic drops its highly anticipated Claude 3 model family. The flagship model, Opus, exhibits near-human levels of comprehension on complex tasks. This real-time update demonstrates how SignalFlow captures breaking industry shifts the moment they occur."
-      };
-      setFeedData(prev => {
-        // Prevent adding duplicate if it's already there (React StrictMode runs useEffect twice)
-        if (prev.some(a => a.title === newArticle.title)) return prev;
-        return [newArticle, ...prev];
-      });
-    }, 5000); // Trigger once after 5 seconds
-    return () => clearTimeout(timeout);
-  }, []);
-
   // Filter Logic
   const filteredFeed = feedData.filter(article => {
     if (noiseFilterOn && !article.signal) return false;
@@ -69,7 +41,7 @@ export default function TheSignalFeed() {
 
               {/* Vibe Selector */}
               <div className="flex items-center bg-surface-container-high rounded-full p-1 shadow-sm">
-                {['Low', 'Medium', 'High'].map(vibe => (
+                {['All', 'Low', 'Medium', 'High'].map(vibe => (
                   <button 
                     key={vibe}
                     onClick={() => setActiveVibe(vibe)}
