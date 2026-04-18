@@ -10,26 +10,26 @@ export function MobileNav() {
         </div>
       </header>
 
-      <nav 
+      <nav
         className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pt-2 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]"
-        style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+        style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 0.5rem)' }}
       >
-        <NavLink to="/" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 touch-manipulation after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 touch-manipulation"}>
+        <NavLink to="/" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300"}>
           {({ isActive }) => (
             <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>rss_feed</span>
           )}
         </NavLink>
-        <NavLink to="/noise-filter" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 touch-manipulation after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 touch-manipulation"}>
+        <NavLink to="/noise-filter" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300"}>
           {({ isActive }) => (
             <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>tune</span>
           )}
         </NavLink>
-        <NavLink to="/archive" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 touch-manipulation after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 touch-manipulation"}>
+        <NavLink to="/archive" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300"}>
           {({ isActive }) => (
             <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>inventory_2</span>
           )}
         </NavLink>
-        <NavLink to="/ai-control" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 touch-manipulation after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300 touch-manipulation"}>
+        <NavLink to="/ai-control" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300"}>
           {({ isActive }) => (
             <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}>settings_input_component</span>
           )}
