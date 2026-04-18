@@ -124,7 +124,7 @@ export default function SmartArchive() {
         )}
       </main>
 
-      <div className={`fixed bottom-24 right-8 transform transition-all duration-300 ease-out bg-surface-container-highest text-on-surface px-6 py-4 rounded-lg shadow-lg font-label font-medium flex items-center gap-3 z-50 ${toastVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+      <div className={`fixed bottom-24 right-8 transform transition-all duration-300 ease-out bg-surface-container-highest text-on-surface px-6 py-4 rounded-lg shadow-lg font-label font-medium flex items-center gap-3 z-50 ${toastVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
         <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>info</span>
         <span>{toastMsg}</span>
       </div>
