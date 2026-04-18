@@ -11,7 +11,7 @@ export function MobileNav() {
       </header>
 
       <nav
-        className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pt-2 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]"
+        className="md:hidden fixed bottom-0 left-0 w-full z-[9999] flex justify-around items-center px-2 pt-2 bg-surface-container-low/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.4)]"
         style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 0.5rem)' }}
       >
         <NavLink to="/" className={({ isActive }) => isActive ? "relative flex-1 h-14 flex flex-col items-center justify-center text-primary transition-all duration-300 after:content-[''] after:absolute after:bottom-2 after:w-1 after:h-1 after:bg-primary after:rounded-full" : "flex-1 h-14 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all duration-300"}>
